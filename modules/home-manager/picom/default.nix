@@ -15,7 +15,7 @@ in
     services.picom = {
       enable = true;
       backend = "glx";
-      activeOpacity = 0.95;
+      activeOpacity = 1;
       # opacityRules = [
       #   "100:window_type *= 'menu'"
       # ];

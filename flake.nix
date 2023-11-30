@@ -12,7 +12,7 @@
     impermanence.url = "github:nix-community/impermanence";
     sops-nix.url = "github:Mic92/sops-nix";
     nix-colors.url = "github:misterio77/nix-colors";
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/5240f631102f4aba8c498f07b3996355edbe62fa";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/5240f631102f4aba8c498f07b3996355edbe62fa";
   };
 

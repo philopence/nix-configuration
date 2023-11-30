@@ -19,7 +19,7 @@
 
   nixpkgs = {
     overlays = [
-      # inputs.neovim-nightly-overlay.overlay
+      inputs.neovim-nightly-overlay.overlay
     ] ++ (builtins.attrValues outputs.overlays);
     config = {
       allowUnfree = true;
@@ -83,8 +83,11 @@
           # url = "https://w.wallhaven.cc/full/o3/wallhaven-o3j1yl.jpg";
           # sha256 = "sha256-z/a1v4wQ0MFil1oluwFnEluKRGV1x+yz4bRSmZWCJFY=";
           ## PEPE
-          url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
-          sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
+          # url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
+          # sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
+          ## SMOKE
+          url = "https://w.wallhaven.cc/full/9d/wallhaven-9dkeqd.png";
+          sha256 = "sha256-VXbsxhPdHc9OgmD/Y1e2IiYIig9x/0+VUxqqAoSeTYQ=";
           ## NIGHT GIRL
           # url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
           # sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
@@ -99,10 +102,10 @@
         name = "Sans";
         size = 10;
       };
-      theme = {
-        package = pkgs.materia-theme;
-        name = "Materia-dark-compact";
-      };
+      # theme = {
+      #   package = pkgs.materia-theme;
+      #   name = "Materia-compact";
+      # };
       iconTheme = {
         package = pkgs.papirus-icon-theme;
         name = "Papirus-Dark";
@@ -146,17 +149,17 @@
       enable = true;
       functions = {
         fish_greeting = "";
-        # fish_prompt = ''
-        #   set_color magenta
-        #   echo -n (prompt_pwd)" "
-        #   set_color -o cyan
-        #   if fish_is_root_user
-        #     echo -n "# "
-        #   else
-        #     echo -n "\$ "
-        #   end
-        #   set_color normal
-        # '';
+        fish_prompt = ''
+          set_color magenta
+          echo -n (prompt_pwd)" "
+          set_color -o cyan
+          if fish_is_root_user
+            echo -n "# "
+          else
+            echo -n "\$ "
+          end
+          set_color normal
+        '';
       };
     };
 

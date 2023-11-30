@@ -116,7 +116,7 @@
           pskRaw = "@ERROR@";
         };
         "hotspot" = {
-          psk = "804afbff602826da0d4c9e52dd32521851aac7bd3359e859e3a18579f8a2cd49";
+          pskRaw = "804afbff602826da0d4c9e52dd32521851aac7bd3359e859e3a18579f8a2cd49";
         };
       };
     };
@@ -159,6 +159,10 @@
             <test qual="any" name="family" compare="eq"><string>Helvetica</string></test>
             <edit name="family" mode="assign" binding="same"><string>Jost*</string></edit>
           </match>
+          <match target="pattern">
+            <test qual="any" name="family" compare="eq"><string>Noto Sans</string></test>
+            <edit name="family" mode="assign" binding="same"><string>Jost*</string></edit>
+          </match>
         </fontconfig>
       '';
     };
@@ -172,6 +176,7 @@
     ## 2. recover through impermanence
     ## 3. disable hostKeys option to fix SOPS
     hostKeys = [ ];
+    # OR
     ## hostKeys = [
     ##   {
     ##     bits = 4096;
@@ -188,7 +193,6 @@
   services.pipewire = {
     enable = true;
     alsa.enable = true;
-    # pulse.enable = true;
   };
 
   services.udisks2.enable = true;
