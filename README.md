@@ -8,7 +8,9 @@ Ctrl + Shift / Ctrl + Shift + Alt --> Term
 
 ## TODO
 
-- [emmet-language-server](https://github.com/NixOS/nixpkgs/pull/255524)
+- [x] [emmet-language-server](https://github.com/NixOS/nixpkgs/pull/255524)
+- [ ] https://github.com/IBM/plex
+
 
 ## Install Guide
 

@@ -17,6 +17,8 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
+  services.syncthing.enable = true;
+
   nixpkgs = {
     overlays = [
       inputs.neovim-nightly-overlay.overlay
@@ -47,9 +49,10 @@
       qmk
       brightnessctl
       trashy
-      kicad-small
+      # kicad-small
       pcmanfm
-      cava
+      zathura
+      nitch
     ];
     pointerCursor = {
       # package = pkgs.catppuccin-cursors.mochaLavender;
@@ -86,11 +89,14 @@
           # url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
           # sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
           ## SMOKE
-          url = "https://w.wallhaven.cc/full/9d/wallhaven-9dkeqd.png";
-          sha256 = "sha256-VXbsxhPdHc9OgmD/Y1e2IiYIig9x/0+VUxqqAoSeTYQ=";
+          # url = "https://w.wallhaven.cc/full/9d/wallhaven-9dkeqd.png";
+          # sha256 = "sha256-VXbsxhPdHc9OgmD/Y1e2IiYIig9x/0+VUxqqAoSeTYQ=";
           ## NIGHT GIRL
           # url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
           # sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
+          ## https://wallhaven.cc/w/6d7xmx
+          url = "https://w.wallhaven.cc/full/6d/wallhaven-6d7xmx.jpg";
+          sha256 = "sha256-yuGciZFtdTxJ4ieTvMP/kxmTSL2gAPjC/JhOwChGGbQ=";
         };
         };
 
@@ -102,10 +108,10 @@
         name = "Sans";
         size = 10;
       };
-      # theme = {
-      #   package = pkgs.materia-theme;
-      #   name = "Materia-compact";
-      # };
+      theme = {
+        package = pkgs.materia-theme;
+        name = "Materia-dark-compact";
+      };
       iconTheme = {
         package = pkgs.papirus-icon-theme;
         name = "Papirus-Dark";
@@ -135,8 +141,8 @@
         { id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; } ## immersive-translate
         { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } ## ublock-origin
         { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } ## google-translate
-        { id = "hkbdddpiemdeibjoknnofflfgbgnebcm"; } ## youtube-dual-subtitles
         { id = "fmkadmapgofadopljbjfkapdkoienihi"; } ## react-developer-tools
+        # { id = "hkbdddpiemdeibjoknnofflfgbgnebcm"; } ## youtube-dual-subtitles
       ];
     };
 

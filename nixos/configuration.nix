@@ -138,7 +138,9 @@
       recursive
       cascadia-code
       jost
-      monaspace
+      mononoki
+      ibm-plex
+      # ✿
     ];
     fontconfig = {
       defaultFonts = {
@@ -189,6 +191,8 @@
     ##   }
     ## ];
   };
+
+  sound.enable = true;
 
   services.pipewire = {
     enable = true;

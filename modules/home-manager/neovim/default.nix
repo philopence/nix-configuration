@@ -26,6 +26,7 @@ in
         lua-language-server
         nodePackages_latest.typescript-language-server
         vscode-langservers-extracted
+        emmet-language-server
       ];
     };
 
