@@ -5,9 +5,6 @@ M.setup = function()
   vim.g.mapleader = " "
   vim.g.maplocalleader = ","
 
-  vim.g.loaded_netrw = 1
-  vim.g.loaded_netrwPlugin = 1
-
   -- ##### OPTIONS #####
   local options = {
     termguicolors = true,
@@ -16,7 +13,6 @@ M.setup = function()
     showmatch = false,
     ruler = false,
     cursorline = false,
-    cmdheight = 0,
     list = true,
     listchars = "tab:⭲ ,trail:·,extends:…,precedes:…,nbsp:␣,conceal:…",
     wrap = true,
@@ -33,137 +29,51 @@ M.setup = function()
     tabstop = 2,
     shiftwidth = 0,
     softtabstop = -1,
-    updatetime = 100,
+    updatetime = 300,
     timeoutlen = 500,
     undofile = true,
     laststatus = 3,
-    statusline = "%F",
+    statusline = "%F%m%r%=%c/%l:%L %P",
     winbar = "%t%m%r",
     mouse = "",
     number = true,
     relativenumber = true,
     signcolumn = "yes",
-    fillchars = "fold: ",
+    cmdheight = 0,
+    jumpoptions = "stack",
     completeopt = "menu,menuone,noinsert,noselect",
     pumheight = 7,
-    foldtext = "v:lua.vim.treesitter.foldtext()",
+    foldtext = "",
+    foldmethod = "expr",
+    foldexpr = "v:lua.vim.treesitter.foldexpr()",
+    -- foldenable = false,
+    foldlevel = 1024,
+    fillchars = "fold: ",
+    -- TODO custom foldcolumn
+    -- foldcolumn = "1",
   }
 
   for k, v in pairs(options) do
     vim.api.nvim_set_option_value(k, v, {})
   end
 
-  local function format(hl_group)
-    return function(content)
-      return string.format("%%#%s#%s%%*", hl_group or "Normal", content or "")
-    end
-  end
-
-  function _G.winbar()
-    local cur_win = vim.api.nvim_get_current_win()
-    local cur_buf = vim.api.nvim_win_get_buf(cur_win)
-    local buf_name = vim.api.nvim_buf_get_name(cur_buf)
-
-    if #buf_name == 0 then
-      return ""
-    end
-
-    local relative_path = vim.fn.fnamemodify(buf_name, ":.:h")
-    local fname = vim.fn.fnamemodify(buf_name, ":t")
-    local icon, hl_icon = require("nvim-web-devicons").get_icon(buf_name)
-
-    return table.concat({
-      format("Directory")(" " .. relative_path),
-      format()(" 󰮺 "),
-      format(hl_icon)(icon .. " "),
-      format()(fname),
-      format()("%m"),
-    })
-  end
-
-  vim.api.nvim_set_option_value("winbar", "%{%v:lua.winbar()%}", {})
-
-  local function Diags()
-    local sign_diags = { "E", "W", "I", "H" }
-    local type_diags = { "Error", "Warn", "Info", "Hint" }
-    local diags = {}
-    for i, sign in ipairs(sign_diags) do
-      local num = #vim.diagnostic.get(0, { severity = i })
-      if num ~= 0 then
-        table.insert(diags, format("DiagnosticSign" .. type_diags[i])(sign .. num))
-      end
-    end
-    return table.concat(diags, " ")
-  end
-
-  local function Git()
-    local git = ""
-    if vim.b.gitsigns_head then
-      git = format("NeogitBranch")(" " .. vim.b.gitsigns_head)
-    end
-    if vim.b.gitsigns_status then
-      git = git .. " " .. format("Comment")(vim.b.gitsigns_status)
-    end
-    return git
-  end
-
-  local function Workspace()
-    local ws_dir = vim.fn.fnamemodify(vim.loop.cwd(), ":t")
-    return format("Directory")(" " .. ws_dir)
-  end
-
-  function _G.statusline()
-    return table.concat({
-      Workspace(),
-      "  ",
-      Git(),
-      "  ",
-      Diags(),
-      "%=",
-      "%c/%l:%L %P",
-    })
-  end
-
-  vim.api.nvim_set_option_value("statusline", "%{%v:lua.statusline()%}", {})
-
-  function _G.tabline()
-    local tabpages = vim.api.nvim_list_tabpages()
-    local current_tabpage = vim.api.nvim_get_current_tabpage()
-    local items = {}
-
-    for _, tabpage in ipairs(tabpages) do
-      local win = vim.api.nvim_tabpage_get_win(tabpage)
-      local buf = vim.api.nvim_win_get_buf(win)
-      local name = vim.api.nvim_buf_get_name(buf)
-      name = #name == 0 and "[No Name]" or name
-
-      local icon = require("nvim-web-devicons").get_icon(name)
-
-      local hl_tabpage = tabpage == current_tabpage and "TabLineSel" or "TabLine"
-
-      local modified = vim.api.nvim_get_option_value("modified", { buf = buf })
-      modified = modified and "[+]" or ""
-      local readonly = vim.api.nvim_get_option_value("readonly", { buf = buf })
-      readonly = readonly and "[-]" or ""
-
-      local item = string.format("%%#%s# %s %s%s%s %%*", hl_tabpage, icon, vim.fs.basename(name), modified, readonly)
-      table.insert(items, item)
-    end
-    return table.concat(items, "")
-  end
-
-  -- vim.api.nvim_set_option_value("showtabline", 2, {})
-  -- vim.api.nvim_set_option_value("tabline", "%{%v:lua.tabline()%}", {})
-
   -- ##### KEYMAPS #####
+
+  for _, key in ipairs({
+    " ",
+    "s",
+  }) do
+    vim.keymap.set({ "n", "x" }, key, "<NOP>")
+  end
+
+  -- tmp.
   vim.keymap.set({ "n" }, "<Leader>i", "<Cmd>Inspect<CR>")
 
-  vim.keymap.set({ "n", "v", "o" }, " ", "<NOP>")
+  vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Esc><Cmd>silent write<CR>")
+  vim.keymap.set({ "n", "v" }, "<C-q>", "<Esc><Cmd>quit<CR>")
 
   vim.keymap.set({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
   vim.keymap.set({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
-
-  vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Esc><Cmd>write | redrawstatus<CR>")
 
   vim.keymap.set("n", "U", "<Cmd>redo<CR>")
   vim.keymap.set("n", "<Esc>", "<Cmd>nohls<CR>")
@@ -183,84 +93,69 @@ M.setup = function()
     vim.fn.append(vim.fn.line(".") - 1, vim.fn["repeat"]({ "" }, vim.v.count1))
   end, {})
 
-  vim.keymap.set("n", "<C-q>", "<Esc><Cmd>quit<CR>")
   vim.keymap.set("n", "<C-j>", "<Cmd>wincmd w<CR>")
   vim.keymap.set("n", "<C-k>", "<Cmd>wincmd W<CR>")
-
   vim.keymap.set("n", "<C-h>", "<Cmd>tabprevious<CR>")
   vim.keymap.set("n", "<C-l>", "<Cmd>tabnext<CR>")
-  vim.keymap.set("n", "<C-t>n", "<Cmd>tabnew<CR>")
-  vim.keymap.set("n", "<C-t>c", "<Cmd>tabclose<CR>")
-  vim.keymap.set("n", "<C-t>h", "<Cmd>tabmove -1<CR>")
-  vim.keymap.set("n", "<C-t>l", "<Cmd>tabmove +1<CR>")
-
-  --
   vim.keymap.set("n", "<C-Down>", "<Cmd>wincmd w<CR>")
   vim.keymap.set("n", "<C-Up>", "<Cmd>wincmd W<CR>")
   vim.keymap.set("n", "<C-Left>", "<Cmd>tabprevious<CR>")
   vim.keymap.set("n", "<C-Right>", "<Cmd>tabnext<CR>")
-  --
+
+  vim.keymap.set("n", "<Leader>tn", "<Cmd>tabnew<CR>")
+  vim.keymap.set("n", "<Leader>tc", "<Cmd>tabclose<CR>")
+  vim.keymap.set("n", "<Leader>th", "<Cmd>tabmove -1<CR>")
+  vim.keymap.set("n", "<Leader>tl", "<Cmd>tabmove +1<CR>")
 
   vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
-  vim.keymap.set("n", "<C-n>", "<Cmd>cnext<CR>")
-  vim.keymap.set("n", "<C-p>", "<Cmd>cprev<CR>")
-
   -- ##### AUTOCMDS #####
-  local def_group = vim.api.nvim_create_augroup("DEFAULTS", {})
-  -- Highlight yanked text
   vim.api.nvim_create_autocmd("TextYankPost", {
-    group = def_group,
+    group = vim.api.nvim_create_augroup("ns/yank_post", {}),
+    desc = "Highlight yanked text",
     callback = function()
       vim.highlight.on_yank()
     end,
   })
-  -- Restore cursor
+
   vim.api.nvim_create_autocmd("BufWinEnter", {
-    group = def_group,
+    group = vim.api.nvim_create_augroup("ns/last_location", {}),
+    desc = "Go to the last location when opening a buffer",
     callback = function()
       vim.fn.setpos(".", vim.fn.getpos([['"]]))
     end,
   })
-  -- Trim trailing whitespace
+
   vim.api.nvim_create_autocmd("BufWritePre", {
-    group = def_group,
+    group = vim.api.nvim_create_augroup("ns/trim_whitespace", {}),
+    desc = "Trim trailing whitespace",
     callback = function()
       local pos = vim.api.nvim_win_get_cursor(0)
       vim.cmd([[%s/\s\+$//e]])
       vim.api.nvim_win_set_cursor(0, pos)
     end,
   })
-  -- Start builtin terminal in Insert mode
-  vim.api.nvim_create_autocmd("TermOpen", {
-    group = def_group,
-    command = "startinsert",
-  })
 
   -- ##### DIAGNOSTICS #####
   vim.diagnostic.config({
     signs = true,
     severity_sort = true,
+    virtual_text = false,
     float = {
       border = "single",
+      source = true,
     },
   })
 
-  vim.g.diag_severities = {
-    { type = "Error", sign = "" },
-    { type = "Warn", sign = "" },
-    { type = "Info", sign = "" },
-    { type = "Hint", sign = "" },
-  }
-  for _, diag_severity in ipairs(vim.g.diag_severities) do
-    local name = "DiagnosticSign" .. diag_severity.type
-    local hl_group = name
-    vim.fn.sign_define({ { name = name, text = diag_severity.sign, texthl = hl_group, numhl = hl_group } })
+  local diag_type_signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
+  for type, sign in ipairs(diag_type_signs) do
+    local hl_name = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl_name, { text = sign, texthl = hl_name, numhl = hl_name })
   end
 
   vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-  vim.keymap.set("n", "<Leader>dp", vim.diagnostic.open_float)
+  vim.keymap.set("n", "<Leader>d", vim.diagnostic.open_float)
 end
 
 return M

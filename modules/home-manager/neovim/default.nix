@@ -19,14 +19,12 @@ in
       vimAlias = true;
       vimdiffAlias = true;
       extraPackages = with pkgs; [
-        #   ## TODO: emmet-language-server
         stylua
         eslint_d
         prettierd
         lua-language-server
         nodePackages_latest.typescript-language-server
         vscode-langservers-extracted
-        emmet-language-server
       ];
     };
 

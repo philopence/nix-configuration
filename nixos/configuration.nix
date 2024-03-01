@@ -116,7 +116,7 @@
           pskRaw = "@ERROR@";
         };
         "hotspot" = {
-          pskRaw = "804afbff602826da0d4c9e52dd32521851aac7bd3359e859e3a18579f8a2cd49";
+          pskRaw = "6589d759a80278d2fd8b3d105934f19b877fafe3896e0c4632632dd846635f7e";
         };
       };
     };
@@ -144,8 +144,8 @@
     ];
     fontconfig = {
       defaultFonts = {
-        serif = [ "Jost*" "LXGW Neo XiHei" "LXGW WenKai" "Sarasa Mono SC"];
-        sansSerif = [ "Jost*" "LXGW Neo XiHei" "LXGW WenKai" "Sarasa Mono SC"];
+        serif = [ "Jost*" "LXGW Neo XiHei" "LXGW WenKai" "Sarasa Mono SC" ];
+        sansSerif = [ "Jost*" "LXGW Neo XiHei" "LXGW WenKai" "Sarasa Mono SC" ];
         monospace = [ "LXGW Neo XiHei" "LXGW WenKai" "Sarasa Term SC" ];
       };
       localConf = ''
@@ -192,8 +192,7 @@
     ## ];
   };
 
-  sound.enable = true;
-
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

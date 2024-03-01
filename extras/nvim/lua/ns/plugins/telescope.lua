@@ -12,18 +12,17 @@ return {
   keys = {
     { "<Leader><Space>", "<Cmd>Telescope resume<CR>" },
     { "<Leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>" },
-    -- { "<Leader>ff", "<Cmd>Telescope find_files<CR>" },
-    { "<Leader>ff", "<Cmd>Telescope find_files hidden=true<CR>" },
+    { "<Leader>ff", "<Cmd>Telescope find_files<CR>" },
     { "<Leader>fw", "<Cmd>Telescope grep_string<CR>" },
-    { "<Leader>fs", "<Cmd>Telescope live_grep<CR>" },
+    { "<Leader>fg", "<Cmd>Telescope live_grep<CR>" },
     { "<Leader>fb", "<Cmd>Telescope buffers<CR>" },
     { "<Leader>fh", "<Cmd>Telescope help_tags<CR>" },
     {
       "<Leader>fe",
-      "<Cmd>Telescope file_browser path=%:p:h select_buffer=true theme=dropdown previewer=false hidden=true grouped=true<CR>",
+      "<Cmd>Telescope file_browser<CR>",
     },
     --
-    { "<Leader>dp", "<Cmd>Telescope diagnostics<CR>" },
+    { "<Leader>fd", "<Cmd>Telescope diagnostics<CR>" },
     --
     { "gd", "<Cmd>Telescope lsp_definitions<CR>" },
     { "gr", "<Cmd>Telescope lsp_references<CR>" },
@@ -42,18 +41,34 @@ return {
             preview_width = 0.5,
           },
         },
-        preview = {
-          hide_on_startup = true,
-        },
+        -- preview = {
+        --   hide_on_startup = true,
+        -- },
         file_ignore_patterns = { ".git/" },
         mappings = {
           i = {
-            ["<C-Down>"] = actions.cycle_history_next,
-            ["<C-Up>"] = actions.cycle_history_prev,
-            ["<C-f>"] = actions.preview_scrolling_down,
-            ["<C-b>"] = actions.preview_scrolling_up,
+            ["<C-f>"] = actions.cycle_history_next,
+            ["<C-b>"] = actions.cycle_history_prev,
             ["<C-p>"] = actions_layout.toggle_preview,
           },
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        current_buffer_fuzzy_find = {
+          previewer = false,
+          theme = "ivy",
+        },
+      },
+      extensions = {
+        file_browser = {
+          path = "%:p:h",
+          theme = "dropdown",
+          previewer = false,
+          hidden = true,
+          grouped = true,
         },
       },
     }

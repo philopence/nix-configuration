@@ -49,20 +49,13 @@
       qmk
       brightnessctl
       trashy
-      # kicad-small
       pcmanfm
       zathura
-      nitch
     ];
     pointerCursor = {
-      # package = pkgs.catppuccin-cursors.mochaLavender;
-      # name = "Catppuccin-Mocha-Lavender-Cursors";
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors";
       size = 24;
-      # package = pkgs.bibata-cursors;
-      # name = "Bibata-Original-Classic";
-      # size = 16;
       gtk.enable = true;
       x11.enable = true;
     };
@@ -81,128 +74,128 @@
         cache = ''${XDG_CACHE_HOME}/npm
       '';
       # ".background-image".source = ../extras/nix-catppuccin-mocha.png;
-        ".background-image".source = pkgs.fetchurl {
-          ## CAT
-          # url = "https://w.wallhaven.cc/full/o3/wallhaven-o3j1yl.jpg";
-          # sha256 = "sha256-z/a1v4wQ0MFil1oluwFnEluKRGV1x+yz4bRSmZWCJFY=";
-          ## PEPE
-          # url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
-          # sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
-          ## SMOKE
-          # url = "https://w.wallhaven.cc/full/9d/wallhaven-9dkeqd.png";
-          # sha256 = "sha256-VXbsxhPdHc9OgmD/Y1e2IiYIig9x/0+VUxqqAoSeTYQ=";
-          ## NIGHT GIRL
-          # url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
-          # sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
-          ## https://wallhaven.cc/w/6d7xmx
-          url = "https://w.wallhaven.cc/full/6d/wallhaven-6d7xmx.jpg";
-          sha256 = "sha256-yuGciZFtdTxJ4ieTvMP/kxmTSL2gAPjC/JhOwChGGbQ=";
-        };
-        };
+      ".background-image".source = pkgs.fetchurl {
 
-    };
+        # url = "https://w.wallhaven.cc/full/o3/wallhaven-o3j1yl.jpg";
+        # sha256 = "sha256-z/a1v4wQ0MFil1oluwFnEluKRGV1x+yz4bRSmZWCJFY=";
 
-    gtk = {
-      enable = true;
-      font = {
-        name = "Sans";
-        size = 10;
-      };
-      theme = {
-        package = pkgs.materia-theme;
-        name = "Materia-dark-compact";
-      };
-      iconTheme = {
-        package = pkgs.papirus-icon-theme;
-        name = "Papirus-Dark";
+        # url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
+        # sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
+
+        # url = "https://w.wallhaven.cc/full/9d/wallhaven-9dkeqd.png";
+        # sha256 = "sha256-VXbsxhPdHc9OgmD/Y1e2IiYIig9x/0+VUxqqAoSeTYQ=";
+
+        # url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
+        # sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
+
+        url = "https://w.wallhaven.cc/full/l3/wallhaven-l315vy.png";
+        sha256 = "sha256-iD2e/KxypPkfi2SfDEt4zc7zRVBaLaVkCcURpNw9GNg=";
       };
     };
 
-    qt = {
-      enable = true;
-      platformTheme = "gtk";
-    };
+  };
 
-    xsession = {
-      enable = true;
+  gtk = {
+    enable = true;
+    font = {
+      name = "Sans";
+      size = 10;
     };
+    theme = {
+      package = pkgs.materia-theme;
+      name = "Materia-dark-compact";
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
+  };
 
-    xdg = {
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
+
+  xsession = {
+    enable = true;
+  };
+
+  xdg = {
+    enable = true;
+    userDirs = {
       enable = true;
-      userDirs = {
-        enable = true;
-        createDirectories = true;
+      createDirectories = true;
+    };
+  };
+
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      { id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; } ## immersive-translate
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } ## ublock-origin
+      { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } ## google-translate
+      { id = "fmkadmapgofadopljbjfkapdkoienihi"; } ## react-developer-tools
+      { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } ## redux-devtools
+    ];
+  };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+  };
+
+  programs.fish = {
+    enable = true;
+    functions = {
+      fish_greeting = "";
+      # fish_prompt = ''
+      #   set_color magenta
+      #   echo -n (prompt_pwd)" "
+      #   set_color -o cyan
+      #   if fish_is_root_user
+      #     echo -n "# "
+      #   else
+      #     echo -n "\$ "
+      #   end
+      #   set_color normal
+      # '';
+    };
+  };
+
+  programs.zoxide.enable = true;
+  programs.ripgrep.enable = true;
+  programs.bat.enable = true;
+  programs.fzf.enable = true;
+
+
+  programs.lazygit.enable = true;
+
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+  };
+  programs.btop = {
+    enable = true;
+    settings = {
+      theme_background = false;
+    };
+  };
+
+  services.udiskie.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "philopence";
+    userEmail = "epcroo@yeah.net";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
       };
     };
-
-    programs.chromium = {
-      enable = true;
-      extensions = [
-        { id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh"; } ## immersive-translate
-        { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } ## ublock-origin
-        { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } ## google-translate
-        { id = "fmkadmapgofadopljbjfkapdkoienihi"; } ## react-developer-tools
-        # { id = "hkbdddpiemdeibjoknnofflfgbgnebcm"; } ## youtube-dual-subtitles
-      ];
-    };
-
-    programs.vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-    };
-
-    programs.fish = {
-      enable = true;
-      functions = {
-        fish_greeting = "";
-        fish_prompt = ''
-          set_color magenta
-          echo -n (prompt_pwd)" "
-          set_color -o cyan
-          if fish_is_root_user
-            echo -n "# "
-          else
-            echo -n "\$ "
-          end
-          set_color normal
-        '';
-      };
-    };
-
-    programs.zoxide.enable = true;
-    programs.ripgrep.enable = true;
-    programs.bat.enable = true;
-    programs.fzf.enable = true;
+  };
 
 
-    programs.lazygit.enable = true;
+  programs.home-manager.enable = true;
 
-    programs.eza = {
-      enable = true;
-      enableAliases = true;
-    };
-    programs.btop = {
-      enable = true;
-      settings = {
-        theme_background = false;
-      };
-    };
-
-    services.udiskie.enable = true;
-
-    programs.git = {
-      enable = true;
-      userName = "philopence";
-      userEmail = "epcroo@yeah.net";
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-      };
-    };
-
-
-    programs.home-manager.enable = true;
-
-    systemd.user.startServices = "sd-switch";
-  }
+  systemd.user.startServices = "sd-switch";
+}

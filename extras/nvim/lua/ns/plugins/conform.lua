@@ -1,11 +1,14 @@
 return {
   "stevearc/conform.nvim",
-  ft = { "lua", "javascript", "html", "css" },
+  event = "VeryLazy",
   config = function()
     require("conform").setup({
       formatters_by_ft = {
         lua = { "stylua" },
         javascript = { { "prettierd", "prettier" } },
+        javascriptreact = { { "prettierd", "prettier" } },
+        typescript = { { "prettierd", "prettier" } },
+        typescriptreact = { { "prettierd", "prettier" } },
         html = { { "prettierd", "prettier" } },
         css = { { "prettierd", "prettier" } },
         json = { { "prettierd", "prettier" } },

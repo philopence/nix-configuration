@@ -1,18 +1,17 @@
 return {
   {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    main = "ts_context_commentstring",
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
       "nvim-treesitter/nvim-treesitter-textobjects",
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        main = "ts_context_commentstring",
+        opts = {
+          enable_autocmd = false,
+        },
+      },
     },
-    -- ft = filetypes,
     event = { "VeryLazy" },
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
@@ -28,6 +27,7 @@ return {
         "nix",
         "html",
         "css",
+        "styled",
         "javascript",
       },
       highlight = { enable = true },
