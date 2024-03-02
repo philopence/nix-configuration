@@ -41,13 +41,13 @@ in
         "ctrl+shift+w" = "close_tab";
       };
       settings = with config.colorScheme.colors; {
-        font_size = "10.5";
+        font_size = "10.0";
         # background_opacity = "0.93";
         # font_family = "Sarasa Term SC";
         # bold_font = "Sarasa Term SC Bold";
         # italic_font = "Sarasa Term SC";
         # bold_italic_font = "Sarasa Term SC Bold";
-        "modify_font cell_height" = "110%";
+        "modify_font cell_height" = "115%";
         #
         # font_family = "IBM Plex Mono";
         # bold_font = "IBM Plex Mono Bold";
@@ -69,8 +69,8 @@ in
         # Script Version: 1.1.1
         symbol_map = "U+E000-U+E00A,U+E0A0-U+E0A2,U+E0B0-U+E0B3,U+E0A3-U+E0A3,U+E0B4-U+E0C8,U+E0CC-U+E0D2,U+E0D4-U+E0D4,U+E5FA-U+E6B2,U+E700-U+E7C5,U+F000-U+F2E0,U+E200-U+E2A9,U+F400-U+F4A8,U+2665-U+2665,U+26A1-U+26A1,U+F27C-U+F27C,U+F300-U+F372,U+23FB-U+23FE,U+2B58-U+2B58,U+F0001-U+F0010,U+E300-U+E3EB Symbols Nerd Font Mono";
 
-        window_padding_width = 5;
-        window_border_width = "2pt";
+        window_padding_width = 3;
+        window_border_width = 2;
         enabled_layouts = "fat:bias=70,tall,splits,grid,horizontal,vertical,stack";
         active_border_color = "#${base0D}";
         inactive_border_color = "#${base03}";

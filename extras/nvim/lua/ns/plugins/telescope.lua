@@ -17,12 +17,9 @@ return {
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>" },
     { "<Leader>fb", "<Cmd>Telescope buffers<CR>" },
     { "<Leader>fh", "<Cmd>Telescope help_tags<CR>" },
-    {
-      "<Leader>fe",
-      "<Cmd>Telescope file_browser<CR>",
-    },
-    --
     { "<Leader>fd", "<Cmd>Telescope diagnostics<CR>" },
+    --
+    { "<Leader>e", "<Cmd>Telescope file_browser<CR>" },
     --
     { "gd", "<Cmd>Telescope lsp_definitions<CR>" },
     { "gr", "<Cmd>Telescope lsp_references<CR>" },
@@ -36,9 +33,11 @@ return {
       defaults = {
         prompt_prefix = "$ ",
         selection_caret = "▌ ",
+        sorting_strategy = "ascending",
         layout_config = {
           horizontal = {
             preview_width = 0.5,
+            prompt_position = "top",
           },
         },
         -- preview = {
@@ -59,7 +58,6 @@ return {
         },
         current_buffer_fuzzy_find = {
           previewer = false,
-          theme = "ivy",
         },
       },
       extensions = {

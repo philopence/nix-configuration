@@ -32,9 +32,10 @@ M.setup = function()
     updatetime = 300,
     timeoutlen = 500,
     undofile = true,
-    laststatus = 3,
-    statusline = "%F%m%r%=%c/%l:%L %P",
-    winbar = "%t%m%r",
+    -- laststatus = 0,
+    -- statusline = "",
+    -- statusline = "%F%m%r%=%c/%l:%L %P",
+    -- winbar = "%t%m%r",
     mouse = "",
     number = true,
     relativenumber = true,
@@ -74,6 +75,9 @@ M.setup = function()
 
   vim.keymap.set({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
   vim.keymap.set({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+  --
+  vim.keymap.set({ "n", "x" }, "<Down>", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+  vim.keymap.set({ "n", "x" }, "<Up>", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
   vim.keymap.set("n", "U", "<Cmd>redo<CR>")
   vim.keymap.set("n", "<Esc>", "<Cmd>nohls<CR>")
@@ -97,6 +101,7 @@ M.setup = function()
   vim.keymap.set("n", "<C-k>", "<Cmd>wincmd W<CR>")
   vim.keymap.set("n", "<C-h>", "<Cmd>tabprevious<CR>")
   vim.keymap.set("n", "<C-l>", "<Cmd>tabnext<CR>")
+  --
   vim.keymap.set("n", "<C-Down>", "<Cmd>wincmd w<CR>")
   vim.keymap.set("n", "<C-Up>", "<Cmd>wincmd W<CR>")
   vim.keymap.set("n", "<C-Left>", "<Cmd>tabprevious<CR>")
@@ -133,6 +138,20 @@ M.setup = function()
       local pos = vim.api.nvim_win_get_cursor(0)
       vim.cmd([[%s/\s\+$//e]])
       vim.api.nvim_win_set_cursor(0, pos)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("VimEnter", {
+    group = vim.api.nvim_create_augroup("ns/statusline", {}),
+    desc = "hide statusline on startup page",
+    callback = function()
+      vim.opt.laststatus = 0
+      -- vim.api.nvim_create_autocmd("BufUnload", {
+      --   once = true,
+      --   callback = function()
+      --     vim.o.laststatus = 3
+      --   end,
+      -- })
     end,
   })
 

@@ -51,6 +51,7 @@
       trashy
       pcmanfm
       zathura
+      neofetch
     ];
     pointerCursor = {
       package = pkgs.capitaine-cursors;
@@ -166,6 +167,17 @@
   programs.ripgrep.enable = true;
   programs.bat.enable = true;
   programs.fzf.enable = true;
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      character = {
+        success_symbol = "[󰈺 ](bold yellow)";
+        error_symbol = "[󰈺 ](bold red)";
+      };
+    };
+  };
 
 
   programs.lazygit.enable = true;

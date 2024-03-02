@@ -29,13 +29,11 @@ return {
   },
   {
     "echasnovski/mini.statusline",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {},
     config = function()
       local statusline = require("mini.statusline")
-      statusline.setup({
-        set_vim_settings = false,
-      })
+      statusline.setup({})
 
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
