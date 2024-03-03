@@ -131,18 +131,18 @@ M.setup = function()
     end,
   })
 
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("ns/trim_whitespace", {}),
-    desc = "Trim trailing whitespace",
-    callback = function()
-      local pos = vim.api.nvim_win_get_cursor(0)
-      vim.cmd([[%s/\s\+$//e]])
-      vim.api.nvim_win_set_cursor(0, pos)
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("BufWritePre", {
+  --   group = vim.api.nvim_create_augroup("ns/trim_whitespace", {}),
+  --   desc = "Trim trailing whitespace",
+  --   callback = function()
+  --     local pos = vim.api.nvim_win_get_cursor(0)
+  --     vim.cmd([[%s/\s\+$//e]])
+  --     vim.api.nvim_win_set_cursor(0, pos)
+  --   end,
+  -- })
 
   vim.api.nvim_create_autocmd("VimEnter", {
-    group = vim.api.nvim_create_augroup("ns/statusline", {}),
+    group = vim.api.nvim_create_augroup("ns/hide_statusline", {}),
     desc = "hide statusline on startup page",
     callback = function()
       vim.opt.laststatus = 0

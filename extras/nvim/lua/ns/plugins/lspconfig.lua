@@ -14,21 +14,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<Leader>cr", vim.lsp.buf.rename, opts)
-    vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
-    -- vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
-    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-    -- vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
-    -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-    -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-    -- vim.keymap.set("n", "<Leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-    -- vim.keymap.set("n", "<Leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-    -- vim.keymap.set("n", "<Leader>wl", function()
-    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    -- end, opts)
+    vim.keymap.set({ "n", "x" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "S", vim.lsp.buf.signature_help, opts)
 
     if client.supports_method("textDocument/formatting") then
-      vim.keymap.set({ "n", "v" }, "<Leader>cf", vim.lsp.buf.format, opts)
+      vim.keymap.set({ "n", "x" }, "<Leader>cf", vim.lsp.buf.format, opts)
     end
   end,
 })
@@ -41,7 +31,12 @@ return {
   },
   event = "VeryLazy",
   config = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      require("cmp_nvim_lsp").default_capabilities()
+    )
 
     local server_settings = {
       lua_ls = {
@@ -54,6 +49,7 @@ return {
           },
         },
       },
+      eslint = {},
       tsserver = {},
       html = {},
       cssls = {},

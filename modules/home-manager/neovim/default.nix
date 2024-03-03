@@ -20,8 +20,10 @@ in
       vimdiffAlias = true;
       extraPackages = with pkgs; [
         stylua
-        eslint_d
-        prettierd
+        nixpkgs-fmt
+        fswatch # LSP: workspace/didChangeWatchedFiles
+        # eslint_d
+        # prettierd
         lua-language-server
         nodePackages_latest.typescript-language-server
         vscode-langservers-extracted

@@ -8,9 +8,11 @@ return {
       build = "make",
     },
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
   },
   keys = {
-    { "<Leader><Space>", "<Cmd>Telescope resume<CR>" },
+    { "<Leader>fr", "<Cmd>Telescope resume<CR>" },
+    --
     { "<Leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>" },
     { "<Leader>ff", "<Cmd>Telescope find_files<CR>" },
     { "<Leader>fw", "<Cmd>Telescope grep_string<CR>" },
@@ -74,7 +76,11 @@ return {
   config = function(_, opts)
     require("telescope").setup(opts)
 
-    for _, extension in ipairs({ "fzf", "file_browser" }) do
+    for _, extension in ipairs({
+      "fzf",
+      "file_browser",
+      "ui-select",
+    }) do
       require("telescope").load_extension(extension)
     end
   end,
