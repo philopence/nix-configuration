@@ -15,8 +15,8 @@ in
     services.xserver = {
       enable = true;
       displayManager.lightdm.enable = true;
-      ## windowManager.bspwm.enable = true;
       windowManager.dk.enable = true;
+      windowManager.dk.package = pkgs.dkwm;
       libinput.touchpad.naturalScrolling = true;
     };
   };

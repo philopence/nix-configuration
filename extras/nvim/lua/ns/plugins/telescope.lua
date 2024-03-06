@@ -15,13 +15,14 @@ return {
     --
     { "<Leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>" },
     { "<Leader>ff", "<Cmd>Telescope find_files<CR>" },
-    { "<Leader>fw", "<Cmd>Telescope grep_string<CR>" },
+    { "<Leader>fw", "<Cmd>Telescope grep_string<CR>", mode = {"n", "x"} },
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>" },
     { "<Leader>fb", "<Cmd>Telescope buffers<CR>" },
     { "<Leader>fh", "<Cmd>Telescope help_tags<CR>" },
     { "<Leader>fd", "<Cmd>Telescope diagnostics<CR>" },
+    { "<Leader>hl", "<Cmd>Telescope highlights<CR>" },
     --
-    { "<Leader>e", "<Cmd>Telescope file_browser<CR>" },
+    { "<Leader>fm", "<Cmd>Telescope file_browser<CR>", desc = "[F]ile [M]anager" },
     --
     { "gd", "<Cmd>Telescope lsp_definitions<CR>" },
     { "gr", "<Cmd>Telescope lsp_references<CR>" },

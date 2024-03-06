@@ -1,27 +1,20 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-    assert(client ~= nil)
-
-    -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
 
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<Leader>cr", vim.lsp.buf.rename, opts)
     vim.keymap.set({ "n", "x" }, "<Leader>ca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "S", vim.lsp.buf.signature_help, opts)
-
-    if client.supports_method("textDocument/formatting") then
-      vim.keymap.set({ "n", "x" }, "<Leader>cf", vim.lsp.buf.format, opts)
-    end
   end,
 })
+
+-- local handlers =  {
+--   ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"}),
+--   ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded" }),
+-- }
 
 return {
   "neovim/nvim-lspconfig",
@@ -31,7 +24,6 @@ return {
   },
   event = "VeryLazy",
   config = function()
-    -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local capabilities = vim.tbl_deep_extend(
       "force",
       vim.lsp.protocol.make_client_capabilities(),
@@ -49,7 +41,6 @@ return {
           },
         },
       },
-      eslint = {},
       tsserver = {},
       html = {},
       cssls = {},
@@ -67,6 +58,7 @@ return {
       lspconfig[server].setup({
         capabilities = capabilities,
         settings = settings,
+        -- handlers = handlers,
       })
     end
   end,

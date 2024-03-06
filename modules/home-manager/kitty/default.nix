@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      theme = "Catppuccin-Mocha";
+      theme = "Tokyo Night";
       keybindings = {
         ## CLI
         "ctrl+shift+e" = "launch --cwd=current --type=os-window --os-window-class=lf lf";
@@ -40,14 +40,14 @@ in
         "ctrl+shift+r" = "set_tab_title";
         "ctrl+shift+w" = "close_tab";
       };
-      settings = with config.colorScheme.colors; {
+      settings = with config.colorScheme.palette; {
         font_size = "10.0";
         # background_opacity = "0.93";
         # font_family = "Sarasa Term SC";
         # bold_font = "Sarasa Term SC Bold";
         # italic_font = "Sarasa Term SC";
         # bold_italic_font = "Sarasa Term SC Bold";
-        "modify_font cell_height" = "115%";
+        "modify_font cell_height" = "125%";
         #
         # font_family = "IBM Plex Mono";
         # bold_font = "IBM Plex Mono Bold";

@@ -6,7 +6,6 @@ local linters_by_ft = {
 }
 return {
   "mfussenegger/nvim-lint",
-  enabled = false,
   ft = vim.tbl_keys(linters_by_ft),
   config = function()
     require("lint").linters_by_ft = linters_by_ft

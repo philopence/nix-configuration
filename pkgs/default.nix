@@ -3,5 +3,5 @@
 
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
-  emmet-language-server = pkgs.callPackage ./emmet-language-server { };
+  dkwm = pkgs.callPackage ./dkwm { };
 }

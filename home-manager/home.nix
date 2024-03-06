@@ -5,6 +5,7 @@
 
   features = {
     dkwm.enable = true;
+    # bspwm.enable = true;
     rime.enable = true;
     picom.enable = true;
     kitty.enable = true;

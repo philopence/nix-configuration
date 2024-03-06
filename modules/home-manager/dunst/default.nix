@@ -17,15 +17,15 @@ in
       settings =
         let
           common = {
-            foreground = "#${config.colorScheme.colors.base06}";
-            background = "#${config.colorScheme.colors.base00}";
+            foreground = "#${config.colorScheme.palette.base06}";
+            background = "#${config.colorScheme.palette.base00}";
           };
         in
         {
           global = {
             offset = "15x15";
             frame_width = 5;
-            frame_color = "#${config.colorScheme.colors.base02}";
+            frame_color = "#${config.colorScheme.palette.base02}";
           };
           urgency_low = {
             timeout = 3;

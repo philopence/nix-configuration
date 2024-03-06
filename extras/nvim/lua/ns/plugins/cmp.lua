@@ -1,7 +1,3 @@
--- DONE https://github.com/hrsh7th/nvim-cmp/pull/1734
-
-local winhighlight = "Normal:Normal,FloatBorder:Comment,CursorLine:CursorLine,Search:None"
-
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -18,16 +14,6 @@ return {
           vim.snippet.expand(args.body)
         end,
       },
-      window = {
-        completion = cmp.config.window.bordered({
-          col_offset = -1,
-          winhighlight = winhighlight,
-        }),
-        documentation = cmp.config.window.bordered({
-          col_offset = -1,
-          winhighlight = winhighlight,
-        }),
-      },
       ---@diagnostic disable-next-line missing-fields
       formatting = {
         format = function(entry, vim_item)
@@ -39,28 +25,25 @@ return {
       },
 
       mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-e>"] = cmp.mapping.abort(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-1),
         ["<C-d>"] = cmp.mapping.scroll_docs(1),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif vim.snippet.jumpable(1) then
+        ["<C-l>"] = cmp.mapping(function()
+          if vim.snippet.jumpable(1) then
             vim.snippet.jump(1)
-          else
-            fallback()
           end
         end, { "i", "s" }),
-
-        ["<S-Tab>"] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif vim.snippet.jumpable(-1) then
+        ["<C-h>"] = cmp.mapping(function()
+          if vim.snippet.jumpable(-1) then
             vim.snippet.jump(-1)
           end
         end, { "i", "s" }),
       }),
+
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "buffer" },
@@ -68,3 +51,15 @@ return {
     })
   end,
 }
+
+-- local winhighlight = "Normal:Normal,FloatBorder:Comment,CursorLine:CursorLine,Search:None"
+-- window = {
+--   completion = cmp.config.window.bordered({
+--     col_offset = -1,
+--     winhighlight = winhighlight,
+--   }),
+--   documentation = cmp.config.window.bordered({
+--     col_offset = -1,
+--     winhighlight = winhighlight,
+--   }),
+-- },

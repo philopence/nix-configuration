@@ -25,9 +25,9 @@ in
         in
         {
           "*" = {
-            text-color = mkLiteral "#${config.colorScheme.colors.base07}";
-            background-color = mkLiteral "#${config.colorScheme.colors.base00}";
-            border-color = mkLiteral "#${config.colorScheme.colors.base01}";
+            text-color = mkLiteral "#${config.colorScheme.palette.base07}";
+            background-color = mkLiteral "#${config.colorScheme.palette.base00}";
+            border-color = mkLiteral "#${config.colorScheme.palette.base01}";
           };
           "window" = {
             font = "sans 13";
@@ -42,18 +42,17 @@ in
           };
           "#prompt" = {
             padding = mkLiteral "0.5em 1em";
-            text-color = mkLiteral "#${config.colorScheme.colors.base00}";
-            background-color = mkLiteral "#${config.colorScheme.colors.base0E}";
+            text-color = mkLiteral "#${config.colorScheme.palette.base00}";
+            background-color = mkLiteral "#${config.colorScheme.palette.base0E}";
             vertical-align = mkLiteral "0.5";
           };
           "#entry" = {
             padding = mkLiteral "0.3em 0";
             vertical-align = mkLiteral "0.5";
             horizontal-align = mkLiteral "0.5";
-            text-color = mkLiteral "#${config.colorScheme.colors.base07}";
-            # background-color = mkLiteral "#${config.colorScheme.colors.base02}";
+            text-color = mkLiteral "#${config.colorScheme.palette.base07}";
             border = mkLiteral "0 0 2";
-            border-color = mkLiteral "#${config.colorScheme.colors.base07}";
+            border-color = mkLiteral "#${config.colorScheme.palette.base07}";
           };
           "#listview" = {
             lines = mkLiteral "7";
@@ -62,15 +61,14 @@ in
           };
           "#element" = {
             padding = mkLiteral "0.15em 0";
-            # text-color = mkLiteral "#${config.colorScheme.colors.base03}";
             # spacing = mkLiteral "0.5em";
           };
           "element normal.normal, element alternate.normal" = {
-            text-color = mkLiteral "#${config.colorScheme.colors.base03}";
+            text-color = mkLiteral "#${config.colorScheme.palette.base03}";
             # text-transform = mkLiteral "bold";
           };
           "#element selected.normal" = {
-            text-color = mkLiteral "#${config.colorScheme.colors.base0D}";
+            text-color = mkLiteral "#${config.colorScheme.palette.base0D}";
             # text-transform = mkLiteral "bold";
           };
           "#element-icon" = {

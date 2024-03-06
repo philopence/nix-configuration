@@ -21,9 +21,9 @@ in
       extraPackages = with pkgs; [
         stylua
         nixpkgs-fmt
-        fswatch # LSP: workspace/didChangeWatchedFiles
-        # eslint_d
-        # prettierd
+        fswatch # https://github.com/neovim/neovim/pull/27347
+        eslint_d
+        prettierd
         lua-language-server
         nodePackages_latest.typescript-language-server
         vscode-langservers-extracted

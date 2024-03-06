@@ -12,7 +12,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ dk sxhkd ];
+    home.packages = with pkgs; [ dkwm sxhkd ];
 
     # ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}
     xdg.configFile."dk/dkrc".source = pkgs.writeShellScript "dkrc" ''
@@ -35,12 +35,12 @@ in
         dkcmd set mouse mod=super move=button1 resize=button3
         dkcmd set border width=0 outer_width=7 \
           colour \
-          focus='#${config.colorScheme.colors.base07}' \
-          unfocus='#${config.colorScheme.colors.base03}' \
-          urgent='#${config.colorScheme.colors.base08}' \
-          outer_focus='#${config.colorScheme.colors.base00}' \
-          outer_unfocus='#${config.colorScheme.colors.base00}' \
-          outer_urgent='#${config.colorScheme.colors.base00}'
+          focus='#${config.colorScheme.palette.base07}' \
+          unfocus='#${config.colorScheme.palette.base03}' \
+          urgent='#${config.colorScheme.palette.base08}' \
+          outer_focus='#${config.colorScheme.palette.base00}' \
+          outer_unfocus='#${config.colorScheme.palette.base00}' \
+          outer_urgent='#${config.colorScheme.palette.base00}'
         dkcmd rule class='^chromium-browser$' ws=2
         # dkcmd rule class="^chromium-browser$" title="^open files$" float=true w=1280 h=720
         dkcmd rule class='^btop$' float=true x=center y=center w=1280 h=720
@@ -75,7 +75,7 @@ in
         {kitty -o allow_remote_control=yes,rofi -show drun}
       super + m
         kitty --class btop btop
-      super + {_,shift + }Print
+      super + {_,shift + }p
         maim -o {-s ,_}~/Pictures/screenshot_$(date +%s).png
       ## DKWM
       super + {Down,Up}
