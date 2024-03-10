@@ -42,7 +42,8 @@ M.setup = function()
     signcolumn = "yes",
     cmdheight = 0,
     jumpoptions = "stack",
-    completeopt = "menu,menuone,popup,noinsert,noselect",
+    -- TODO figure out why the popup window invalid
+    completeopt = "menu,menuone,popup,longest,noinsert,noselect",
     pumheight = 5,
     foldtext = "",
     foldmethod = "expr",

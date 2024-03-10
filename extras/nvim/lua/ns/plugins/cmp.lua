@@ -29,8 +29,8 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-1),
-        ["<C-d>"] = cmp.mapping.scroll_docs(1),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-3),
+        ["<C-d>"] = cmp.mapping.scroll_docs(3),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-l>"] = cmp.mapping(function()
           if vim.snippet.jumpable(1) then

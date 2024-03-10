@@ -138,7 +138,6 @@
       recursive
       cascadia-code
       jost
-      mononoki
       ibm-plex
       # ✿
     ];

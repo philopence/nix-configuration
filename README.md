@@ -3,7 +3,7 @@
 ## TODO
 
 - [x] [emmet-language-server](https://github.com/NixOS/nixpkgs/pull/255524)
-- [ ] [Build failure: dk-2.0 #293613](https://github.com/NixOS/nixpkgs/issues/293613)
+- [x] [Build failure: dk-2.0 #293613](https://github.com/NixOS/nixpkgs/issues/293613)
 - [ ] wayland
 
 ## Install Guide

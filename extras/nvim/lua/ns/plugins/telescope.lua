@@ -15,14 +15,14 @@ return {
     --
     { "<Leader>/", "<Cmd>Telescope current_buffer_fuzzy_find<CR>" },
     { "<Leader>ff", "<Cmd>Telescope find_files<CR>" },
-    { "<Leader>fw", "<Cmd>Telescope grep_string<CR>", mode = {"n", "x"} },
+    { "<Leader>fw", "<Cmd>Telescope grep_string<CR>", mode = { "n", "x" } },
     { "<Leader>fg", "<Cmd>Telescope live_grep<CR>" },
     { "<Leader>fb", "<Cmd>Telescope buffers<CR>" },
     { "<Leader>fh", "<Cmd>Telescope help_tags<CR>" },
     { "<Leader>fd", "<Cmd>Telescope diagnostics<CR>" },
     { "<Leader>hl", "<Cmd>Telescope highlights<CR>" },
     --
-    { "<Leader>fm", "<Cmd>Telescope file_browser<CR>", desc = "[F]ile [M]anager" },
+    { "<Leader>fm", "<Cmd>Telescope file_browser path=%:p:h<CR>", desc = "[F]ile [M]anager" },
     --
     { "gd", "<Cmd>Telescope lsp_definitions<CR>" },
     { "gr", "<Cmd>Telescope lsp_references<CR>" },
@@ -34,7 +34,7 @@ return {
     local actions_layout = require("telescope.actions.layout")
     return {
       defaults = {
-        prompt_prefix = "$ ",
+        prompt_prefix = "$   ",
         selection_caret = "▌ ",
         sorting_strategy = "ascending",
         layout_config = {
@@ -49,9 +49,9 @@ return {
         file_ignore_patterns = { ".git/" },
         mappings = {
           i = {
-            ["<C-f>"] = actions.cycle_history_next,
-            ["<C-b>"] = actions.cycle_history_prev,
-            ["<C-p>"] = actions_layout.toggle_preview,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-Up>"] = actions.cycle_history_prev,
+            -- ["<C-p>"] = actions_layout.toggle_preview,
           },
         },
       },
@@ -65,8 +65,6 @@ return {
       },
       extensions = {
         file_browser = {
-          path = "%:p:h",
-          theme = "dropdown",
           previewer = false,
           hidden = true,
           grouped = true,

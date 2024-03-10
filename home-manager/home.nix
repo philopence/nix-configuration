@@ -53,6 +53,8 @@
       pcmanfm
       zathura
       neofetch
+      brave
+      cmatrix
     ];
     pointerCursor = {
       package = pkgs.capitaine-cursors;

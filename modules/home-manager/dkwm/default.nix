@@ -12,7 +12,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ dkwm sxhkd ];
+    home.packages = with pkgs; [ dk sxhkd ];
 
     # ${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}
     xdg.configFile."dk/dkrc".source = pkgs.writeShellScript "dkrc" ''
