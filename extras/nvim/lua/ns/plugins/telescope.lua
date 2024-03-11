@@ -58,6 +58,7 @@ return {
       pickers = {
         find_files = {
           hidden = true,
+          file_ignore_patterns = { "node_modules/", ".git/" },
         },
         current_buffer_fuzzy_find = {
           previewer = false,

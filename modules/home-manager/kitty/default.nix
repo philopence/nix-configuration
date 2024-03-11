@@ -41,7 +41,7 @@ in
         "ctrl+shift+w" = "close_tab";
       };
       settings = with config.colorScheme.palette; {
-        font_size = "10.0";
+        font_size = "11.0";
         background_opacity = "0.90";
         # font_family = "Sarasa Term SC";
         # bold_font = "Sarasa Term SC Bold";

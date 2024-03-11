@@ -30,6 +30,7 @@ return {
         "styled",
         "javascript",
         "typescript",
+        "tsx",
       },
       highlight = { enable = true },
       incremental_selection = {

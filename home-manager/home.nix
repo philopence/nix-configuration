@@ -55,6 +55,7 @@
       neofetch
       brave
       cmatrix
+      mame
     ];
     pointerCursor = {
       package = pkgs.capitaine-cursors;
