@@ -22,7 +22,7 @@ in
 
       pgrep -x sxhkd > /dev/null || sxhkd &
 
-      xset r rate 200 35
+      xset r rate 200 50
 
       {
         dkcmd set numws=5

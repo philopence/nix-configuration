@@ -21,6 +21,10 @@ return {
   dependencies = {
     { "folke/neodev.nvim", opts = {} },
     "b0o/schemastore.nvim",
+    {
+      "pmizio/typescript-tools.nvim",
+      opts = {},
+    },
   },
   event = "VeryLazy",
   config = function()
@@ -41,7 +45,7 @@ return {
           },
         },
       },
-      tsserver = {},
+      -- tsserver = {},
       html = {},
       cssls = {},
       jsonls = {

@@ -56,6 +56,7 @@
       brave
       cmatrix
       mame
+      sqlite
     ];
     pointerCursor = {
       package = pkgs.capitaine-cursors;
@@ -106,14 +107,14 @@
       name = "Sans";
       size = 10;
     };
-    theme = {
-      package = pkgs.materia-theme;
-      name = "Materia-dark-compact";
-    };
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus-Dark";
-    };
+    # theme = {
+    #   package = pkgs.materia-theme;
+    #   name = "Materia-dark-compact";
+    # };
+    # iconTheme = {
+    #   package = pkgs.papirus-icon-theme;
+    #   name = "Papirus-Dark";
+    # };
   };
 
   qt = {
