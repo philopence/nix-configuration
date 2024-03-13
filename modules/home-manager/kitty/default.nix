@@ -42,32 +42,32 @@ in
       };
       settings = with config.colorScheme.palette; {
         font_size = "11.0";
-        background_opacity = "0.90";
+        # background_opacity = "0.90";
         # font_family = "Sarasa Term SC";
         # bold_font = "Sarasa Term SC Bold";
         # italic_font = "Sarasa Term SC";
         # bold_italic_font = "Sarasa Term SC Bold";
-        "modify_font cell_height" = "120%";
+        "modify_font cell_height" = "115%";
         #
         # font_family = "IBM Plex Mono";
         # bold_font = "IBM Plex Mono Bold";
         # italic_font = "IBM Plex Mono Italic";
         # bold_italic_font = "IBM Plex Mono Bold Italic";
         #
-        # font_family = "Rec Mono Casual";
-        # bold_font = "Rec Mono Casual Bold";
-        # italic_font = "Rec Mono Casual Italic";
-        # bold_italic_font = "Rec Mono Casual Bold Italic";
+        font_family = "Rec Mono Casual";
+        bold_font = "Rec Mono Casual Bold";
+        italic_font = "Rec Mono Casual Italic";
+        bold_italic_font = "Rec Mono Casual Bold Italic";
         #
-        font_family = "Cascadia Code Regular";
-        bold_font = "Cascadia Code Bold";
-        italic_font = "Cascadia Code Italic";
-        bold_italic_font = "Cascadia Code Bold Italic";
+        # font_family = "Cascadia Code Regular";
+        # bold_font = "Cascadia Code Bold";
+        # italic_font = "Cascadia Code Italic";
+        # bold_italic_font = "Cascadia Code Bold Italic";
         #
-        "font_features CascadiaCode-Bold" = "+zero";
-        "font_features CascadiaCode-Regular" = "+zero";
-        "font_features CascadiaCode-Italic" = "+zero";
-        "font_features CascadiaCode-BoldItalic" = "+zero";
+        # "font_features CascadiaCode-Bold" = "+zero";
+        # "font_features CascadiaCode-Regular" = "+zero";
+        # "font_features CascadiaCode-Italic" = "+zero";
+        # "font_features CascadiaCode-BoldItalic" = "+zero";
 
         # https://github.com/ryanoasis/nerd-fonts/blob/master/bin/scripts/test-fonts.sh
         # Nerd Fonts Version: 3.1.1
@@ -76,7 +76,7 @@ in
 
         window_padding_width = 3;
         window_border_width = 2;
-        enabled_layouts = "fat:bias=70,tall,splits,grid,horizontal,vertical,stack";
+        enabled_layouts = "fat:bias=65,tall,splits,grid,horizontal,vertical,stack";
         active_border_color = "#${base0D}";
         inactive_border_color = "#${base03}";
         # tab_activity_symbol = "❥";

@@ -53,7 +53,6 @@
       pcmanfm
       # zathura
       neofetch
-      mame
       sqlite
       # openssl
 
@@ -69,6 +68,12 @@
     sessionVariables = {
       GLFW_IM_MODULE = "ibus";
       FLAKE = "${config.home.homeDirectory}/Documents/nix-configuration";
+      # NOTE prisma-engines
+      # TODO https://github.com/prisma/prisma/issues/17900
+      PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
+      PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
+      PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
+      PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
     };
     sessionPath = [
       "$XDG_DATA_HOME/npm/bin"

@@ -208,12 +208,15 @@
 
   programs.neovim.enable = true;
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    glibc
-  ];
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      glibc # NOTE codeium language_server_linux_x64
+    ];
+  };
 
   hardware.keyboard.qmk.enable = true;
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
