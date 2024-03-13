@@ -51,12 +51,13 @@
       brightnessctl
       trashy
       pcmanfm
-      zathura
+      # zathura
       neofetch
-      brave
-      cmatrix
       mame
       sqlite
+      # openssl
+
+      # mongodb
     ];
     pointerCursor = {
       package = pkgs.capitaine-cursors;
@@ -107,14 +108,14 @@
       name = "Sans";
       size = 10;
     };
-    # theme = {
-    #   package = pkgs.materia-theme;
-    #   name = "Materia-dark-compact";
-    # };
-    # iconTheme = {
-    #   package = pkgs.papirus-icon-theme;
-    #   name = "Papirus-Dark";
-    # };
+    theme = {
+      package = pkgs.materia-theme;
+      name = "Materia-dark-compact";
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
   };
 
   qt = {
@@ -145,10 +146,10 @@
     ];
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscodium;
+  # };
 
   programs.fish = {
     enable = true;
@@ -178,7 +179,7 @@
     enableFishIntegration = true;
     settings = {
       character = {
-        success_symbol = "[󰈺 ](bold yellow)";
+        success_symbol = "[󰈺 ](bold blue)";
         error_symbol = "[󰈺 ](bold red)";
       };
     };
@@ -189,7 +190,7 @@
 
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableFishIntegration = true;
   };
   programs.btop = {
     enable = true;

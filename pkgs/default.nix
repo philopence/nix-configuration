@@ -4,4 +4,5 @@
 { pkgs ? (import ../nixpkgs.nix) { } }: {
   # example = pkgs.callPackage ./example { };
   dkwm = pkgs.callPackage ./dkwm { };
+  myCodeium = pkgs.callPackage ./codeium { };
 }

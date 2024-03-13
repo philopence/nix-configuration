@@ -46,6 +46,7 @@
     };
   };
 
+
   sops = {
     age.sshKeyPaths = [ "/nix/persistent/etc/ssh/ssh_host_ed25519_key" ];
     defaultSopsFile = ../extras/secrets.yaml;
@@ -206,6 +207,11 @@
   programs.git.enable = true;
 
   programs.neovim.enable = true;
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    glibc
+  ];
 
   hardware.keyboard.qmk.enable = true;
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

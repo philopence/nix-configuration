@@ -3,6 +3,16 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
+    {
+      "Exafunction/codeium.nvim",
+      cmd = "Codeium",
+      build = ":Codeium Auth",
+      opts = {
+        -- tools = {
+        --   language_server = vim.env.CODEIUM,
+        -- },
+      },
+    },
   },
   event = { "InsertEnter" },
   config = function()
@@ -45,6 +55,7 @@ return {
       }),
 
       sources = cmp.config.sources({
+        { name = "codeium" },
         { name = "nvim_lsp" },
         { name = "buffer" },
       }),

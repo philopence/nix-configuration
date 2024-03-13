@@ -26,8 +26,11 @@ in
         prettierd
         lua-language-server
         nodePackages_latest.typescript-language-server
+        nodePackages_latest."@prisma/language-server"
         vscode-langservers-extracted
+        tailwindcss-language-server
         typescript
+        # codeium
       ];
     };
 

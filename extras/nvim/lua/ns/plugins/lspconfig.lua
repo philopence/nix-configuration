@@ -46,6 +46,8 @@ return {
         },
       },
       -- tsserver = {},
+      tailwindcss = {},
+      prismals = {},
       html = {},
       cssls = {},
       jsonls = {
