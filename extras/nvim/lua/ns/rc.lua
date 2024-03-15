@@ -32,7 +32,7 @@ M.setup = function()
     updatetime = 300,
     timeoutlen = 500,
     undofile = true,
-    -- laststatus = 0,
+    -- laststatus = 3,
     -- statusline = "",
     -- statusline = "%F%m%r%=%c/%l:%L %P",
     -- winbar = "%t%m%r",
@@ -44,7 +44,7 @@ M.setup = function()
     jumpoptions = "stack",
     -- TODO figure out why the popup window invalid
     completeopt = "menu,menuone,popup,longest,noinsert,noselect",
-    pumheight = 5,
+    pumheight = 7,
     foldtext = "",
     foldmethod = "expr",
     foldexpr = "v:lua.vim.treesitter.foldexpr()",
@@ -154,12 +154,12 @@ M.setup = function()
     desc = "hide statusline on startup page",
     callback = function()
       vim.opt.laststatus = 0
-      -- vim.api.nvim_create_autocmd("BufUnload", {
-      --   once = true,
-      --   callback = function()
-      --     vim.o.laststatus = 3
-      --   end,
-      -- })
+      vim.api.nvim_create_autocmd("BufUnload", {
+        once = true,
+        callback = function()
+          vim.o.laststatus = 3
+        end,
+      })
     end,
   })
 
@@ -169,7 +169,7 @@ M.setup = function()
     severity_sort = true,
     virtual_text = false,
     float = {
-      -- border = "rounded",
+      border = "rounded",
       source = true,
     },
   })

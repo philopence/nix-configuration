@@ -69,6 +69,7 @@ return {
           previewer = false,
           hidden = true,
           grouped = true,
+          hijack_netrw = true,
         },
       },
     }

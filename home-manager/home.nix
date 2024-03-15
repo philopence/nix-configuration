@@ -160,17 +160,6 @@
     enable = true;
     functions = {
       fish_greeting = "";
-      # fish_prompt = ''
-      #   set_color magenta
-      #   echo -n (prompt_pwd)" "
-      #   set_color -o cyan
-      #   if fish_is_root_user
-      #     echo -n "# "
-      #   else
-      #     echo -n "\$ "
-      #   end
-      #   set_color normal
-      # '';
     };
   };
 
@@ -190,7 +179,6 @@
     };
   };
 
-
   programs.lazygit.enable = true;
 
   programs.eza = {
@@ -204,7 +192,6 @@
     };
   };
 
-  services.udiskie.enable = true;
 
   programs.git = {
     enable = true;
@@ -217,6 +204,8 @@
     };
   };
 
+
+  services.udiskie.enable = true;
 
   programs.home-manager.enable = true;
 

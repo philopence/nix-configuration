@@ -18,7 +18,15 @@ return {
   config = function()
     local cmp = require("cmp")
 
+    local window_border = cmp.config.window.bordered({
+      border = "rounded",
+      col_offset = -1,
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:IncSearch,Search:None",
+      scrollbar = false,
+    })
+
     cmp.setup({
+      -- experimental = { ghost_text = true },
       snippet = {
         expand = function(args)
           vim.snippet.expand(args.body)
@@ -54,23 +62,16 @@ return {
         end, { "i", "s" }),
       }),
 
+      window = {
+        completion = window_border,
+        documentation = window_border,
+      },
+
       sources = cmp.config.sources({
-        { name = "codeium" },
         { name = "nvim_lsp" },
         { name = "buffer" },
+        { name = "codeium" },
       }),
     })
   end,
 }
-
--- local winhighlight = "Normal:Normal,FloatBorder:Comment,CursorLine:CursorLine,Search:None"
--- window = {
---   completion = cmp.config.window.bordered({
---     col_offset = -1,
---     winhighlight = winhighlight,
---   }),
---   documentation = cmp.config.window.bordered({
---     col_offset = -1,
---     winhighlight = winhighlight,
---   }),
--- },

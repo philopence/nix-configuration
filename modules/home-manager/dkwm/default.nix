@@ -26,7 +26,7 @@ in
 
       {
         dkcmd set numws=5
-        dkcmd set ws=_ apply layout=tile master=1 stack=5 gap=5 msplit=0.5 ssplit=0.5
+        dkcmd set ws=_ apply layout=tile master=1 stack=5 gap=10 msplit=0.5 ssplit=0.5
         dkcmd set ws=2 gap=0
         dkcmd set focus_open=true focus_urgent=true focus_mouse=false
         dkcmd set tile_tohead=false tile_hints=true

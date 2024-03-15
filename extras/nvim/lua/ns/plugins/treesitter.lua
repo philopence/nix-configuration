@@ -3,20 +3,14 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        main = "ts_context_commentstring",
-        opts = {
-          enable_autocmd = false,
-        },
-      },
     },
     event = { "BufRead", "BufNewFile" },
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
+        "vim",
+        "vimdoc",
         "lua",
         "nix",
         "bash",

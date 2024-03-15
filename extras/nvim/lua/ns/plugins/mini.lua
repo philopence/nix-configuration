@@ -1,6 +1,7 @@
 return {
   {
     "echasnovski/mini.ai",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     event = { "BufRead", "BufNewFile" },
     opts = function()
       local ai = require("mini.ai")
@@ -16,7 +17,7 @@ return {
       }
     end,
   },
-  -- { "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
+  { "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
   {
     "echasnovski/mini.move",
     keys = {
@@ -29,11 +30,12 @@ return {
   },
   {
     "echasnovski/mini.statusline",
-    event = "BufRead",
-    opts = {},
+    event = "VeryLazy",
     config = function()
       local statusline = require("mini.statusline")
-      statusline.setup({})
+      statusline.setup({
+        set_vim_settings = true,
+      })
 
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
@@ -98,6 +100,15 @@ return {
 
   {
     "echasnovski/mini.comment",
+    dependencies = {
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        main = "ts_context_commentstring",
+        opts = {
+          enable_autocmd = false,
+        },
+      },
+    },
     keys = {
       { "gc", mode = { "n", "x" } },
     },

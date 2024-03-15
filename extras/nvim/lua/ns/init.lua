@@ -6,6 +6,6 @@ M.setup = function()
 
   -- vim.cmd.colorscheme("solarized-osaka")
   -- vim.cmd.colorscheme("tokyonight-night")
-  -- vim.cmd.colorscheme("catppuccin-mocha")
+  vim.cmd.colorscheme("catppuccin-mocha")
 end
 return M

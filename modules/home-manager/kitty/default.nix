@@ -14,7 +14,7 @@ in
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
-      # theme = "Tokyo Night";
+      theme = "Catppuccin-Mocha";
       keybindings = {
         ## CLI
         "ctrl+shift+e" = "launch --cwd=current --type=os-window --os-window-class=lf lf";
@@ -42,7 +42,7 @@ in
       };
       settings = with config.colorScheme.palette; {
         font_size = "11.0";
-        # background_opacity = "0.90";
+        background_opacity = "0.90";
         # font_family = "Sarasa Term SC";
         # bold_font = "Sarasa Term SC Bold";
         # italic_font = "Sarasa Term SC";
