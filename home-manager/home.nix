@@ -54,6 +54,7 @@
       # zathura
       neofetch
       sqlite
+      glow
       # openssl
 
       # mongodb
@@ -148,6 +149,7 @@
       { id = "aapbdbdomjkkjkaonfhkkikfgjllcleb"; } ## google-translate
       { id = "fmkadmapgofadopljbjfkapdkoienihi"; } ## react-developer-tools
       { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } ## redux-devtools
+      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } ## dark-reader
     ];
   };
 

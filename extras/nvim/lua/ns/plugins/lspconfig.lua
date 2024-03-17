@@ -56,6 +56,7 @@ return {
           validate = { enable = true },
         },
       },
+      marksman = {},
     }
 
     local lspconfig = require("lspconfig")

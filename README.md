@@ -1,5 +1,16 @@
 # Nix Configuration
 
+<!--toc:start-->
+
+- [Nix Configuration](#nix-configuration)
+  - [TODO](#todo)
+  - [Install Guide](#install-guide)
+  - [Next Step](#next-step)
+  - [Other Modules](#other-modules)
+  - [Impermanence Guide](#impermanence-guide)
+  - [Sops(-nix) Guide](#sops-nix-guide)
+  <!--toc:end-->
+
 ## TODO
 
 - [x] [emmet-language-server](https://github.com/NixOS/nixpkgs/pull/255524)

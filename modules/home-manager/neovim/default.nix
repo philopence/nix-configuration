@@ -29,8 +29,8 @@ in
         nodePackages_latest."@prisma/language-server"
         vscode-langservers-extracted
         tailwindcss-language-server
+        marksman
         typescript
-        # codeium
       ];
     };
 
