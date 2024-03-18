@@ -54,7 +54,6 @@
       # zathura
       neofetch
       sqlite
-      glow
       # openssl
 
       # mongodb

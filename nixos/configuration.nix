@@ -60,6 +60,7 @@
     mutableUsers = false;
     defaultUserShell = pkgs.fish;
     users = {
+      # mkpasswd -m SHA-512 -s "<PASSWD>"
       root = {
         initialHashedPassword = "$6$aXXcWWvfrOnLVjBF$38D8mmf.vHgWJFpOo7NHePs7To/1ftYU/hYzeE1ND2./7o.KLQsNplFn0mUoQFk9u72MKAHlt9Altb71jE6Te/";
       };

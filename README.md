@@ -1,16 +1,5 @@
 # Nix Configuration
 
-<!--toc:start-->
-
-- [Nix Configuration](#nix-configuration)
-  - [TODO](#todo)
-  - [Install Guide](#install-guide)
-  - [Next Step](#next-step)
-  - [Other Modules](#other-modules)
-  - [Impermanence Guide](#impermanence-guide)
-  - [Sops(-nix) Guide](#sops-nix-guide)
-  <!--toc:end-->
-
 ## TODO
 
 - [x] [emmet-language-server](https://github.com/NixOS/nixpkgs/pull/255524)
@@ -33,6 +22,7 @@ $ sudo -i
   > add_network
   > set_network <id> ssid "<ssid>"
   > set_network <id> psk "<passphrase>"
+# > set_network <id> key_mgmt WPA-PSK
   > set_network <id> scan_ssid 1 # for hidden SSID
   > enable_network <id>
   > quit
@@ -146,6 +136,6 @@ nixos-install --no-root-passwd --flake <flake-url>#<hostname>
 - [nix-colors](https://github.com/Misterio77/nix-colors)
 - [neovim-nightly-overlay](https://github.com/nix-community/neovim-nightly-overlay)
 
-## Impermanence Guide
+## [Impermanence](https://github.com/nix-community/impermanence)
 
-## Sops(-nix) Guide
+## [Sops(-nix)](https://github.com/Mic92/sops-nix)
