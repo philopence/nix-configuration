@@ -152,10 +152,10 @@
     ];
   };
 
-  # programs.vscode = {
-  #   enable = true;
-  #   package = pkgs.vscodium;
-  # };
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+  };
 
   programs.fish = {
     enable = true;

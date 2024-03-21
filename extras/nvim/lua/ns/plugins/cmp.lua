@@ -38,6 +38,9 @@ return {
           if entry.source.name == "buffer" then
             vim_item.kind = "Buffer"
           end
+          if entry.source.name == "codeium" then
+            vim.print(vim_item)
+          end
           return vim_item
         end,
       },
@@ -68,10 +71,14 @@ return {
       },
 
       sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "buffer" },
         { name = "codeium" },
+        { name = "nvim_lsp" },
+      }, {
+        { name = "buffer", keyword_length = 3 },
       }),
     })
+
+    -- set global highlight
+    vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { link = "CmpItemKindCopilot" })
   end,
 }

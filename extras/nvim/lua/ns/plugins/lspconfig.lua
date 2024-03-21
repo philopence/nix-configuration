@@ -11,10 +11,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
-}
+local methods = vim.lsp.protocol.Methods
+
+vim.lsp.handlers[methods.textDocument_hover] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
 return {
   "neovim/nvim-lspconfig",
@@ -23,7 +22,15 @@ return {
     "b0o/schemastore.nvim",
     {
       "pmizio/typescript-tools.nvim",
-      opts = {},
+      opts = {
+        settings = {
+          tsserver_file_preferences = {
+            includeInlayParameterNameHints = "all",
+            includeInlayVariableTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+          },
+        },
+      },
     },
   },
   event = "VeryLazy",
@@ -45,7 +52,6 @@ return {
           },
         },
       },
-      -- tsserver = {},
       tailwindcss = {},
       prismals = {},
       html = {},
@@ -65,7 +71,6 @@ return {
       lspconfig[server].setup({
         capabilities = capabilities,
         settings = settings,
-        handlers = handlers,
       })
     end
   end,

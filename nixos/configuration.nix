@@ -13,6 +13,12 @@
 
   features.xserver.enable = true;
 
+  ## FIXED neovim :h fswatch-limitations
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 100000;
+    "fs.inotify.max_queued_events" = 100000;
+  };
+
   nix = {
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;

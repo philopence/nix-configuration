@@ -1,6 +1,6 @@
 # NEOVIM & PDE
 
-> Keep native. Keep classic. Keep simple.
+> Keep simple.
 
 ## TODO
 
@@ -11,5 +11,8 @@
 - [x] [Error in decoration provider treesitter/highlighter.win](https://github.com/neovim/neovim/issues/27235)
   - telescope help_pages
   - FIXED: just install `vim` `vimdoc` parser
+- [ ] check: https://github.com/nvim-neorocks/rocks.nvim
+- [ ] check: https://github.com/luckasRanarison/tailwind-tools.nvim
+- [ ] check: https://github.com/SuperBo/fugit2.nvim
 
 ## Best Prictices

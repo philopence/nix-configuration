@@ -22,7 +22,7 @@ $ sudo -i
   > add_network
   > set_network <id> ssid "<ssid>"
   > set_network <id> psk "<passphrase>"
-# > set_network <id> key_mgmt WPA-PSK
+  > set_network <id> key_mgmt WPA-PSK
   > set_network <id> scan_ssid 1 # for hidden SSID
   > enable_network <id>
   > quit

@@ -17,7 +17,7 @@ return {
       }
     end,
   },
-  { "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
+  -- { "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
   {
     "echasnovski/mini.move",
     keys = {
@@ -45,7 +45,6 @@ return {
             -- local location = MiniStatusline.section_location({ trunc_width = 75 })
             local location = "%c/%l:%L %P"
             local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
-            local grapple = require("grapple").statusline()
 
             return MiniStatusline.combine_groups({
               { hl = mode_hl, strings = { mode } },
@@ -53,7 +52,6 @@ return {
               "%<", -- Mark general truncate point
               { hl = "MiniStatuslineFilename", strings = { filename } },
               "%=", -- End left alignment
-              { hl = "Normal", strings = { grapple } },
               { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
               { hl = mode_hl, strings = { search, location } },
             })
