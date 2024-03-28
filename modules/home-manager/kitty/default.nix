@@ -41,23 +41,25 @@ in
         "ctrl+shift+w" = "close_tab";
       };
       settings = with config.colorScheme.palette; {
-        font_size = "11.0";
-        background_opacity = "0.90";
-        # font_family = "Sarasa Term SC";
-        # bold_font = "Sarasa Term SC Bold";
-        # italic_font = "Sarasa Term SC";
-        # bold_italic_font = "Sarasa Term SC Bold";
+        font_size = "12.0";
+        background_opacity = "0.95";
         "modify_font cell_height" = "115%";
+        disable_ligatures = "always";
+        #
+        font_family = "Sarasa Term SC";
+        bold_font = "Sarasa Term SC Bold";
+        italic_font = "Sarasa Term SC";
+        bold_italic_font = "Sarasa Term SC Bold";
         #
         # font_family = "IBM Plex Mono";
         # bold_font = "IBM Plex Mono Bold";
         # italic_font = "IBM Plex Mono Italic";
         # bold_italic_font = "IBM Plex Mono Bold Italic";
         #
-        font_family = "Rec Mono Casual";
-        bold_font = "Rec Mono Casual Bold";
-        italic_font = "Rec Mono Casual Italic";
-        bold_italic_font = "Rec Mono Casual Bold Italic";
+        # font_family = "Rec Mono Casual";
+        # bold_font = "Rec Mono Casual Bold";
+        # italic_font = "Rec Mono Casual Italic";
+        # bold_italic_font = "Rec Mono Casual Bold Italic";
         #
         # font_family = "Cascadia Code Regular";
         # bold_font = "Cascadia Code Bold";

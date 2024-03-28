@@ -8,6 +8,7 @@ return {
       cmd = "Codeium",
       build = ":Codeium Auth",
       opts = {
+        enable_chat = true,
         -- tools = {
         --   language_server = vim.env.CODEIUM,
         -- },

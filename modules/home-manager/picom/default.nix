@@ -16,28 +16,24 @@ in
       enable = true;
       backend = "glx";
       activeOpacity = 1;
-      # opacityRules = [
-      #   "100:window_type *= 'menu'"
-      # ];
       fade = true;
       fadeSteps = [ 0.07 0.07 ];
       shadow = true;
-      shadowExclude = [ ];
-      # shadowOffsets = [ (-5) (-5) ];
-      # shadowOpacity = 0.5;
-      # wintypes = {
-      #   popup_menu = { blur-background = false; shadow = false; };
-      #   utility = { blur-background = false; shadow = false; };
-      # };
+      shadowExclude = [
+        "window_type = 'menu'"
+      ];
       settings = {
-        #shadow-radius = 15;
-        blur = {
-          ## method = "gaussian";
-          ## size = 10;
-          ## deviation = 5.0;
-          method = "dual_kawase";
-          strength = "10";
-        };
+        # blur = {
+        #   method = "dual_kawase";
+        #   strength = "10";
+        #   background-exclude = [
+        #     "class_g = 'Chromium-browser'"
+        #     "window_type = 'menu'"
+        #     "window_type = 'dropdown_menu'"
+        #     "window_type = 'popup_menu'"
+        #     "window_type = 'tooltip'"
+        #   ];
+        # };
       };
     };
   };
