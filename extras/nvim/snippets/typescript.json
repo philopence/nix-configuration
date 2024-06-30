@@ -1,0 +1,10 @@
+{
+  "print": {
+    "prefix": ["log"],
+    "body": "console.log($0)"
+  },
+  "try...catch": {
+    "prefix": ["tc"],
+    "body": ["try {", "  ${0}", "} catch(err) {", "  console.error(err)", "}"]
+  }
+}
