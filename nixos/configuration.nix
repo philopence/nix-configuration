@@ -31,6 +31,11 @@
   boot.kernelModules = ["tcp_bbr"];
   boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
 
+  boot.loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+  };
+
   nix = let
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
