@@ -5,9 +5,7 @@
   config,
   pkgs,
   ...
-}: let
-  flake = "/home/philopence/Documents/nix-configuration";
-in {
+}: {
   imports =
     [
       inputs.nixos-hardware.nixosModules.common-cpu-intel
@@ -16,12 +14,14 @@ in {
       inputs.home-manager.nixosModules.home-manager
       inputs.impermanence.nixosModules.impermanence
       inputs.sops-nix.nixosModules.sops
-
+      # inputs.disko.nixosModules.disko
+      # ./disko.nix
       ./hardware-configuration.nix
     ]
     ++ (builtins.attrValues outputs.nixosModules);
 
   features.xserver.enable = true;
+
 
   ## FIXED neovim :h fswatch-limitations
   boot.kernel.sysctl = {
@@ -31,11 +31,15 @@ in {
   boot.kernelModules = ["tcp_bbr"];
   boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
 
-  nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+  nix = let
+    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+  in {
     settings = {
       experimental-features = "nix-command flakes";
+      flake-registry = "";
+      # ISSUE: Workaround for https://github.com/NixOS/nix/issues/9574
+      nix-path = config.nix.nixPath;
+      auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
@@ -43,8 +47,11 @@ in {
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-      auto-optimise-store = true;
     };
+    # Opinionated: disable channels
+    channel.enable = false;
+    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
+    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
   nixpkgs = {
@@ -59,7 +66,7 @@ in {
   };
 
   home-manager = {
-    extraSpecialArgs = {inherit inputs outputs flake;};
+    extraSpecialArgs = {inherit inputs outputs;};
     users = {
       "philopence" = import ../home-manager/home.nix;
     };
@@ -123,7 +130,7 @@ in {
         "/etc/ssh"
         "/var/lib/docker"
         "/var/lib/sops-nix" # host age keys
-        "/var/lib/private/ollama"
+        # "/var/lib/private/ollama"
       ];
       files = [];
       users."philopence" = {
@@ -174,29 +181,100 @@ in {
   services.sing-box = {
     enable = true;
     settings = {
+      dns = {
+        servers = [
+          {
+            tag = "proxy-dns";
+            address = "https://1.1.1.1/dns-query";
+            detour = "proxy-out";
+          }
+          {
+            tag = "direct-dns";
+            address = "https://223.5.5.5/dns-query";
+            detour = "direct-out";
+          }
+        ];
+
+        rules = [
+          {
+            outbound = "any";
+            server = "direct-dns";
+          }
+          # {
+          #   clash_mode = "direct";
+          #   server = "direct-dns";
+          # }
+          # {
+          #   clash_mode = "Global";
+          #   server = "proxy-dns";
+          # }
+          {
+            rule_set = "geosite-geolocation-cn";
+            server = "direct-dns";
+          }
+        ];
+        final = "proxy-dns";
+        strategy = "prefer_ipv4";
+      };
+
       inbounds = [
         {
           type = "tun";
           tag = "tun-in";
-          interface_name = "tun";
+          interface_name = "sing-box";
+          ## TODO v1.10.0 "address": [ "172.18.0.1/30" ]
           inet4_address = "172.19.0.1/30";
+          mtu = 1480;
+          gso = true;
           auto_route = true;
+          stack = "gvisor";
           sniff = true;
           sniff_override_destination = false;
-          gso = true;
-          # mtu = 1500;
-          # stack = "gvisor";
+        }
+      ];
+
+      outbounds = [
+        {
+          type = "shadowsocks";
+          tag = "proxy-out";
+          server._secret = /run/secrets/proxy/server;
+          server_port = 11025;
+          method = "aes-128-gcm";
+          password._secret = /run/secrets/proxy/password;
+        }
+        {
+          type = "dns";
+          tag = "dns-out";
+        }
+        {
+          type = "block";
+          tag = "block-out";
+        }
+        {
+          type = "direct";
+          tag = "direct-out";
         }
       ];
       route = {
-        auto_detect_interface = true;
         rules = [
           {
             protocol = "dns";
             outbound = "dns-out";
           }
+          # {
+          #   clash_mode = "Direct";
+          #   outbound = "direct-out";
+          # }
+          # {
+          #   clash_mode = "Global";
+          #   outbound = "proxy-out";
+          # }
           {
             protocol = "quic";
+            outbound = "block-out";
+          }
+          {
+            rule_set = "geosite-category-ads-all";
             outbound = "block-out";
           }
           {
@@ -204,7 +282,6 @@ in {
             outbound = "direct-out";
           }
         ];
-        final = "proxy-out";
         rule_set = [
           {
             tag = "geoip-cn";
@@ -220,59 +297,28 @@ in {
             url = "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs";
             download_detour = "proxy-out";
           }
+          {
+            tag = "geosite-category-ads-all";
+            format = "binary";
+            type = "remote";
+            url = "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs";
+            download_detour = "proxy-out";
+          }
         ];
+        final = "proxy-out";
+        auto_detect_interface = true;
       };
-      dns = {
-        rules = [
-          {
-            outbound = "any";
-            server = "direct-dns";
-          }
-          {
-            rule_set = "geosite-geolocation-cn";
-            server = "direct-dns";
-          }
-        ];
-        final = "proxy-dns";
-        servers = [
-          {
-            tag = "proxy-dns";
-            address = "https://1.1.1.1/dns-query";
-            detour = "proxy-out";
-          }
-          {
-            tag = "direct-dns";
-            address = "https://223.5.5.5/dns-query";
-            detour = "direct-out";
-          }
-        ];
-      };
-      outbounds = [
-        {
-          tag = "proxy-out";
-          type = "shadowsocks";
-          server._secret = /run/secrets/proxy/server;
-          password._secret = /run/secrets/proxy/password;
-          server_port = 11025;
-          method = "aes-128-gcm";
-        }
-        {
-          tag = "direct-out";
-          type = "direct";
-        }
-        {
-          tag = "dns-out";
-          type = "dns";
-        }
-        {
-          tag = "block-out";
-          type = "block";
-        }
-      ];
+
       experimental = {
         cache_file = {
           enabled = true;
         };
+        # clash_api= {
+        #   external_controller= "127.0.0.1:9090";
+        #   external_ui= "/proxy";
+        #   external_ui_download_url = "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip";
+        #   external_ui_download_detour = "proxy-out";
+        # };
       };
     };
   };
@@ -287,12 +333,8 @@ in {
       sarasa-gothic
       lxgw-neoxihei
       lxgw-wenkai
-      comic-mono
-      fantasque-sans-mono
-      recursive
       cascadia-code
       jetbrains-mono
-      ibm-plex
       # ✿
     ];
     fontconfig = {
@@ -343,8 +385,8 @@ in {
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep 3 --keep-since 7d";
-    inherit flake;
+    clean.extraArgs = "--keep 3";
+    flake = outputs.flakePath;
   };
 
   programs.dconf.enable = true;

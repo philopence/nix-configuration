@@ -31,19 +31,19 @@ in {
         patch:
           ascii_composer:
             switch_key:
-              Shift_L: noop
+              Shift_L: commit_code
               Shift_R: noop
               # commit_code commit_text
           key_binder:
             bindings:
               - {accept: Left, send: Page_Up, when: has_menu}
               - {accept: Right, send: Page_Down, when: has_menu}
-              # - {accept: "Release+Escape", toggle: ascii_mode, when: always}
+              - {accept: Release+Escape, toggle: ascii_mode, when: always}
       '';
 
       "fcitx5/rime/luna_pinyin.custom.yaml".text = ''
         patch:
-          "switches/@0/reset": 0
+          "switches/@0/reset": 1
           "switches/@2/reset": 1
           "recognizer/patterns/reverse_lookup":
             "translator/dictionary": extended

@@ -59,15 +59,15 @@
       trashy
       pcmanfm
       sqlite
-      openssl
+      # openssl
       hugo
-      stripe-cli
+      # stripe-cli
       httpie
-      mongosh
+      # mongosh
       brave
       nitch
-      sing-box
-      iptables
+      # sing-box
+      # iptables
     ];
     pointerCursor = {
       # package = pkgs.capitaine-cursors;
@@ -98,19 +98,19 @@
         prefix = ''${XDG_DATA_HOME}/npm
         cache = ''${XDG_CACHE_HOME}/npm
       '';
+      # ".background-image".source = ../extras/tokyonight.png;
       ".background-image".source = pkgs.fetchurl {
-
         # cherry blossom cat
-        url = "https://w.wallhaven.cc/full/o3/wallhaven-o3j1yl.jpg";
-        sha256 = "sha256-z/a1v4wQ0MFil1oluwFnEluKRGV1x+yz4bRSmZWCJFY=";
+        # url = "https://w.wallhaven.cc/full/o3/wallhaven-o3j1yl.jpg";
+        # sha256 = "sha256-z/a1v4wQ0MFil1oluwFnEluKRGV1x+yz4bRSmZWCJFY=";
 
         # pepe matrix
         # url = "https://w.wallhaven.cc/full/jx/wallhaven-jxyopy.png";
         # sha256 = "sha256-tQTqSltVlQhlfONeyCy2lcSgla2agurO8zB5ghnVZSU=";
 
         # night girl
-        # url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
-        # sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
+        url = "https://w.wallhaven.cc/full/gj/wallhaven-gjyoq7.png";
+        sha256 = "sha256-3vcKZ8x+58Ys5ZlcQMoW2lORILpSAmzrRwzCA1DljcU=";
 
         # gruvbox
         # url = "https://w.wallhaven.cc/full/8o/wallhaven-8oky1j.jpg";
@@ -147,22 +147,22 @@
     };
   };
 
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      {id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh";} ## immersive-translate
-      {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} ## ublock-origin
-      {id = "aapbdbdomjkkjkaonfhkkikfgjllcleb";} ## google-translate
-      {id = "fmkadmapgofadopljbjfkapdkoienihi";} ## react-developer-tools
-      # { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } ## redux-devtools
-      # { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } ## dark-reader
-    ];
-  };
+  # programs.chromium = {
+  #   enable = true;
+  #   extensions = [
+  #     {id = "bpoadfkcbjbfhfodiogcnhhhpibjhbnh";} ## immersive-translate
+  #     {id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";} ## ublock-origin
+  #     {id = "aapbdbdomjkkjkaonfhkkikfgjllcleb";} ## google-translate
+  #     {id = "fmkadmapgofadopljbjfkapdkoienihi";} ## react-developer-tools
+  #     # { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } ## redux-devtools
+  #     # { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } ## dark-reader
+  #   ];
+  # };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscodium;
+  # };
 
   programs.fish = {
     enable = true;
@@ -171,6 +171,7 @@
     };
   };
 
+  programs.yazi = {enable = true;};
   programs.zoxide.enable = true;
   programs.ripgrep.enable = true;
   programs.bat.enable = true;
@@ -205,7 +206,7 @@
   programs.git = {
     enable = true;
     userName = "philopence";
-    userEmail = "epcroo@yeah.net";
+    userEmail = "philopence@gmail.com";
     extraConfig = {
       init = {
         defaultBranch = "main";

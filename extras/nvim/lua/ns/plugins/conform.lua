@@ -6,6 +6,7 @@ local formatters_by_ft = {
   javascriptreact = with_prettier,
   typescript = with_prettier,
   typescriptreact = with_prettier,
+  vue = with_prettier,
   html = with_prettier,
   css = with_prettier,
   json = with_prettier,

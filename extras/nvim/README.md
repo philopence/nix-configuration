@@ -2,19 +2,12 @@
 
 > Keep simple.
 
-arstgqwfpb
-
-## TODO
+## TODOS
 
 - [ ] vtsls: https://github.com/NixOS/nixpkgs/pull/319501
   - tmp: `npm install -g @vtsls/language-server`
-- [x] [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
-- [x] [Error in decoration provider treesitter/highlighter.win](https://github.com/neovim/neovim/issues/27235)
-  - telescope help_pages
-  - FIXED: just install `vim` `vimdoc` parser
-- [x] commenting
-- [x] https://github.com/garymjr/nvim-snippets
-- [ ] vim-dadbod vim-dadbod-completion vim-dadbod-ui
+- [ ] volar
+- [ ] DB: vim-dadbod vim-dadbod-completion vim-dadbod-ui
 - [ ] ISSUE: https://github.com/fsouza/prettierd/issues/612
   - Make sure to run `:!prettierd stop` every time you make a change to your prettier config file.
 

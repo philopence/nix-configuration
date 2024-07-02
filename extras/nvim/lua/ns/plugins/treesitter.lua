@@ -31,7 +31,6 @@ return {
         "tsx",
         "prisma",
         "vue",
-        -- ready go
         "go",
       },
       highlight = { enable = true },

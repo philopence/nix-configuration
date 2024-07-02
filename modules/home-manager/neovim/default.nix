@@ -1,8 +1,8 @@
 {
+  outputs,
   config,
   lib,
   pkgs,
-  flake,
   ...
 }:
 with lib; let
@@ -43,7 +43,6 @@ in {
       ];
     };
 
-    # xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.sessionVariables.FLAKE}/extras/nvim";
-    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${flake}/extras/nvim";
+    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${outputs.flakePath}/extras/nvim";
   };
 }
